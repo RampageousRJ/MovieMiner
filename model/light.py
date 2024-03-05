@@ -19,4 +19,4 @@ def fetch(movie):
     similar_movies = []
     for movie in movies:
         similar_movies.append(df.iloc[movie[0]])
-    return pd.DataFrame(similar_movies).sort_values(by='Popularity',ascending=False).drop(['Title_Lower','Overview_Stemmed','Similarity','Popularity','Year'],axis=1).T.to_json()
+    return pd.DataFrame(similar_movies).sort_values(by='Popularity',ascending=False).drop(['Title_Lower','Overview_Stemmed','Similar','Popularity','Year'],axis=1).T.to_json()
