@@ -20,7 +20,7 @@ function Cards() {
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const req = await fetch('/api', {
+                const req = await fetch('https://movieminer.onrender.com/api', {
                     method: 'POST',
                     headers: {
                         'Content-Type': "application/json"
@@ -37,10 +37,10 @@ function Cards() {
                     // Shortened Overview and Title  for Card View
                     const shortenOverview = item.Overview.substring(0, 80) + '...'
                     const shortenedTitle = item.Title.split(':')[0]
-                    let shortFont=false;
+                    let shortFont = false;
 
-                    if(shortenedTitle.length > 10)
-                        shortFont=true;
+                    if (shortenedTitle.length > 20)
+                        shortFont = true;
                     const obj = {
                         title: item.Title,
                         overview: item.Overview,
@@ -87,7 +87,6 @@ function Cards() {
 
     const handleSearch = (e) => {
         const searchText = document.querySelector('#search')
-        console.log("I am here, ", searchText.value, searchText);
         setTitle(searchText.value)
         searchText.value = ''
     }
@@ -96,16 +95,18 @@ function Cards() {
         <>
             {openModal &&
                 <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, alignItems: 'flex-start' }}
+                    animate={{ opacity: 1, alignItems: "center" }}
                     transition={{ duration: 0.7 }}
                 >
                     <aside
-                        className='w-screen h-screen bg-transparent flex justify-center items-center absolute p-10 z-10 overflow-hidden'
+                        className='bg-transparent flex justify-center items-center fixed top-0 left-0 w-full h-full p-10 z-10 overflow-hidden'
                         onClick={handleCloseModal}
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
+
                         <div
-                            className='max-w-2xl min-w-lg h-auto flex flex-col gap-6 p-10 relative'
+                            className='max-w-2xl min-w-lg h-auto flex flex-col gap-6 p-10 relative bg-white rounded-lg'
                             id='modal'
                             onClick={(e) => e.stopPropagation()}
                         >
