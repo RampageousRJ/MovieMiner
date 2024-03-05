@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import './home.css'
-import svg from '../../../src/assets/undraw_search_app_oso2.svg'
+import svg from '../../../src/assets/movie_miner_logo2.svg'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -65,8 +65,8 @@ function Home() {
                     </button>
                 </div>
             </section>
-            <section className=' w-64 lg:w-96 h-auto' id='home-svg'>
-                <img src={svg} alt="svg" />
+            <section className=' ' id='home-svg'>
+                <img src={svg} alt="svg" className='w-64 lg:w-96 h-64 lg:h-96 bg-cover bg-center' />
             </section>
         </div>
     )
