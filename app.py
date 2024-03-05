@@ -24,8 +24,9 @@ def home():
     if request.method == 'POST':
         data = {'title':form.title.data}
         response = requests.post("https://movieminer.onrender.com/api",json=data).json()
-        for row in response:
-            movies.append(response[row])    
+        print(response)
+        for row in response['Data']:
+            movies.append(response['Data'][row])    
         form.title.data=""
         return render_template('home.html',movies=movies,form=form)
     return render_template('home.html',form=form)
