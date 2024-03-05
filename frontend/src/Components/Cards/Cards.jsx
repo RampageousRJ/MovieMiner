@@ -20,7 +20,7 @@ function Cards() {
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const req = await fetch('/api', {
+                const req = await fetch('https://movieminer.onrender.com/api', {
                     method: 'POST',
                     headers: {
                         'Content-Type': "application/json"
@@ -37,10 +37,10 @@ function Cards() {
                     // Shortened Overview and Title  for Card View
                     const shortenOverview = item.Overview.substring(0, 80) + '...'
                     const shortenedTitle = item.Title.split(':')[0]
-                    let shortFont=false;
+                    let shortFont = false;
 
-                    if(shortenedTitle.length > 10)
-                        shortFont=true;
+                    if (shortenedTitle.length > 10)
+                        shortFont = true;
                     const obj = {
                         title: item.Title,
                         overview: item.Overview,
