@@ -54,7 +54,8 @@ function Cards() {
                 console.log(error);
             }
         }
-        return () => fetchDetails();
+
+        fetchDetails();
 
     }, [title])
 
@@ -127,10 +128,18 @@ function Cards() {
                             name='search'
                             placeholder='Search movies'
                             className='px-3 py-2 rounded-lg bg-transparent opacity-85 shadow-glow-1 w-full '
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter')
+                                    handleSearch()
+                            }}
                         />
                         <FaSearch
                             className='absolute right-3 top-3 cursor-pointer text-gray-400'
                             onClick={handleSearch}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter')
+                                    handleSearch()
+                            }}
                         />
 
                     </div >
