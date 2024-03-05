@@ -38,7 +38,7 @@
 
 @media (hover) {
     .card-content {
-        transform: translateY(60%);
+        transform: translateY(70%);
         transition: transform 500ms ease;
     }
 
@@ -55,7 +55,7 @@
 
     .card:hover .card-content,
     .card:focus-within .card-content {
-        transform: translateY(0);
+        transform: translateY(18%);
         transition-delay: 500ms;
     }
 }

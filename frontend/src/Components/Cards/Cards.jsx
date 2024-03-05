@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './cards.css'
 import Card from '../Card/Card'
 import { useNavigate } from 'react-router-dom'
@@ -57,11 +57,57 @@ function Cards() {
 
     const [openModal, setOpenModal] = useState(false);
     const [modalDetails, setModalDetails] = useState({})
+    const [title, setTitle] = useState('Inception')
+    const [movies, setMovies] = useState([{}, {}])
+
+    // Api Call
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            try {
+                const req = await fetch('/api', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify({
+                        title: title
+                    })
+                })
+                const data = await req.json()
+
+                // The details i am fetching is non interable so we make use of Object Class.
+                let temp = []
+                Object.values(data).forEach((item, index) => {
+
+                    // Shortened Overview and Title  for Card View
+                    const shortenOverview = item.Overview.substring(0, 120) + '...'
+                    const shortenedTitle = item.Title.split(':')[0]
+                    const obj = {
+                        title: item.Title,
+                        overview: item.Overview,
+                        rating: item.Vote_Average,
+                        img: item.Poster_Url,
+                        ind: index,
+                        shortenOverview,
+                        shortenedTitle
+                    }
+                    temp.push(obj)
+                });
+                setMovies(temp);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        return () => fetchDetails();
+
+    }, [title])
 
     const handleModal = (e, ind) => {
         setOpenModal(true)
         e.stopPropagation()
-        const detail = objs[ind]
+        const detail = movies.filter(movie => movie.ind === ind)[0]
         setModalDetails({
             title: detail.title,
             overview: detail.overview,
@@ -80,7 +126,10 @@ function Cards() {
     }
 
     const handleSearch = (e) => {
-        e.preventDefault()
+        const searchText = document.querySelector('#search')
+        console.log("I am here, ", searchText.value, searchText);
+        setTitle(searchText.value)
+        searchText.value = ''
     }
 
     return (
@@ -110,8 +159,7 @@ function Cards() {
                                 <h1 className='text-3xl'>{modalDetails.title}</h1>
                                 <h4 className='text-xl'>Rating: {modalDetails.rating}</h4>
                             </section>
-                            {/* <p>{modalDetails.overview}</p> */}
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos magnam provident, a quam amet exercitationem in ad tempora officia consequuntur animi? Quis, a. Nam, soluta eum ex accusamus autem quisquam qui et numquam, expedita accusantium sed. Necessitatibus consequuntur numquam nostrum laudantium. Corrupti, facilis voluptatum. Aspernatur corporis quo repellat voluptas? Officiis!</p>
+                            <p>{modalDetails.overview}</p>
                         </div>
                     </aside>
                 </motion.div>
@@ -140,7 +188,7 @@ function Cards() {
                     </button>
                 </section >
                 <main id='cards' className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center p-6'>
-                    {objs.map((item, ind) => (
+                    {movies.map((item, ind) => (
                         <motion.div
                             key={ind}
                             initial={{ rotateY: -180, opacity: 0 }}
@@ -164,54 +212,3 @@ function Cards() {
 
 
 export default Cards
-
-{/* <div id = 'container' className = 'min-w-screen min-h-screen'>
-                <section id = 'search-section' className = 'p-8 w-full flex justify-around'>
-                    <div id = 'search-button' className = 'w-1/2 relative'>
-                        <input
-                            type = "text"
-                            id = "search"
-                            name = 'search'
-                            placeholder = 'Search movies'
-                            className = 'px-3 py-2 rounded-lg bg-transparent opacity-85       shadow-glow-1
-                            w-full '
-                        />
-            <FaSearch
-                className='absolute right-3 top-3 cursor-pointer text-gray-400'
-                onClick={handleSearch}
-            />
-
-        </div >
-            <button
-                id='go-back-btn'
-                onClick={handleGoBack}
-            >
-                Go Back
-            </button>
-                </section >
-        <main id='cards' className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center p-6'>
-            {objs.map((item, ind) => (
-                <motion.div
-                    initial={{ rotateY: -180, opacity: 0 }}
-                    animate={{ rotateY: 0, opacity: 1 }}
-                    transition={{ delay: ind * 0.5 + 1.0 }}
-                >
-                    <Card key={ind}
-                        item={item}
-                    />
-                </motion.div>
-            )
-            )}
-        </main>
-            </div > */}
-
-
-// <aside className='w-screen h-screen bg-transparent flex justify-center items-center absolute p-10'>
-//                 <div className='w-lg h-auto flex flex-col gap-6'>
-//                     <section className='flex justify-between'>
-//                         <h1>Hii</h1>
-//                         <h4>Rating</h4>
-//                     </section>
-//                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae eos officiis incidunt hic sint voluptates, distinctio cupiditate ad dolores corrupti libero, animi aliquid eaque exercitationem commodi ut? Nesciunt consequatur temporibus laudantium dolores ullam iusto saepe veritatis, repudiandae sunt totam ipsa fuga hic soluta in optio vero quos sequi est dicta! Nobis voluptatibus veniam consequuntur eveniet, ea, provident officia esse commodi ipsam illum suscipit odit numquam recusandae dolorem incidunt! Nobis ab assumenda a amet mollitia expedita aliquid delectus voluptatem ipsa labore.</p>
-//                 </div>
-//             </aside>

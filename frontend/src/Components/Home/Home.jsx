@@ -54,7 +54,7 @@ function Home() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1.5 }}
                     >
-                        <p>MovieMiner delves into the world of cinema to suggest movies similar to the one you have in mind. Enter a title, and we'll curate a personalized list of recommendations based on genre, themes, actors, directors, and more.</p>
+                        <p>Movie rut blues got you down?  MovieMiner is your cinematic compass!  Tell us a movie you enjoyed, and we'll use genre, actors, and other clues to suggest similar films. No personalization, just pure movie connections to spark your next viewing adventure. Discover hidden gems, revisit old favorites, and keep your film exploration exciting!</p>
                     </motion.div>
                 </article>
                 <div className='btn-container'>

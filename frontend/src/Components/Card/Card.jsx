@@ -3,23 +3,23 @@ import './card.css'
 
 function Card(props) {
 
-    const { title, overview, rating, img } = props.item;
+    const { shortenedTitle, rating, img, shortenOverview } = props.item;
     const handleModal = props.handleModal;
 
     return (
-        <div className="card max-w-lg md:max-w-max bg-cover" style={{ backgroundImage: `url('${img}')` }}>
+        <div className="card w-96 h-96 bg-cover" style={{ backgroundImage: `url('${img}')` }}>
             <div className="card-content w-full">
                 <section className='card-title w-full flex justify-between items-center'>
-                    <h2 className=''>{title}</h2>
+                    <h2 className=''>{shortenedTitle}</h2>
                     <h4>Rating: {rating}</h4>
                 </section>
                 <p className="card-body">
-                    {overview}
+                    {shortenOverview}
                 </p>
                 <button
                     id='know-more-btn'
                     type='submit'
-                    onClick={(e) => handleModal(e, props.item.id)}
+                    onClick={(e) => handleModal(e, props.item.ind)}
                 >
                     Know More
                 </button>
