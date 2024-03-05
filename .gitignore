@@ -153,4 +153,8 @@ cython_debug/
 
 virt/
 
+# All setups ignored
 *.exe
+
+# Node modules to be ignored
+/node_modules
