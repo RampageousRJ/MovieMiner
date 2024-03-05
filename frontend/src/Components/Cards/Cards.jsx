@@ -35,8 +35,12 @@ function Cards() {
                 Object.values(data.Data).forEach((item, index) => {
 
                     // Shortened Overview and Title  for Card View
-                    const shortenOverview = item.Overview.substring(0, 120) + '...'
+                    const shortenOverview = item.Overview.substring(0, 80) + '...'
                     const shortenedTitle = item.Title.split(':')[0]
+                    let shortFont=false;
+
+                    if(shortenedTitle.length > 10)
+                        shortFont=true;
                     const obj = {
                         title: item.Title,
                         overview: item.Overview,
@@ -44,7 +48,8 @@ function Cards() {
                         img: item.Poster_Url,
                         ind: index,
                         shortenOverview,
-                        shortenedTitle
+                        shortenedTitle,
+                        shortFont
                     }
                     temp.push(obj)
                 });

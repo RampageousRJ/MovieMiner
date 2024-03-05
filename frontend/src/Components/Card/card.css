@@ -38,7 +38,7 @@
 
 /* Base styles for .card-content and children */
 .card-content {
-    transform: translateY(70%);
+    transform: translateY(40%);
     transition: transform 500ms ease;
 }
 
@@ -50,7 +50,7 @@
 /* Styles for hover and focus-within */
 .card:hover .card-content,
 .card:focus-within .card-content {
-    transform: translateY(18%);
+    transform: translateY(-10%);
     transition-delay: 500ms;
 }
 
@@ -60,13 +60,13 @@
     transition-delay: 700ms;
 }
 
-@media (max-width: 700px){
+/* @media (max-width: 700px){
     .card:hover .card-content,
     .card:focus-within .card-content {
         transform: translateY(-25%);
         transition-delay: 500ms;
     }
-}
+} */
 
 /* Adjustments for screens narrower than 700px */
 @media (max-width: 500px) {
@@ -80,14 +80,12 @@
     }
 
     .card-content {
-        /* Adjust translateY percentage if needed */
-        transform: translateY(70%);
+        transform: translateY(25%);
     }
 
-    /* Styles for hover and focus-within */
     .card:hover .card-content,
     .card:focus-within .card-content {
-        transform: translateY(-18%);
+        transform: translateY(-25%);
         transition-delay: 500ms;
     }
 }
