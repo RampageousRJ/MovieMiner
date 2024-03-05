@@ -23,7 +23,7 @@ def home():
     form = MovieForm()
     if request.method == 'POST':
         data = {'title':form.title.data}
-        response = requests.post("http://127.0.0.1:5000/api",json=data).json()
+        response = requests.post("https://movieminer.onrender.com/api",json=data).json()
         for row in response:
             movies.append(response[row])    
         form.title.data=""
