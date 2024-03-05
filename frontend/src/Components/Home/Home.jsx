@@ -48,13 +48,13 @@ function Home() {
         justify-center items-center text-center'>
             <section id='home-main' className='flex flex-col gap-4 justify-center max-w-screen-md px-3 '>
                 <article id='home-content' className='flex flex-col gap-8'>
-                    <h1 className='text-7xl text-center tracking-wider ' id='main-title'><span className='text-special'>Movie</span>{visibleTitle}</h1>
+                    <h1 className='text-5xl md:text-7xl text-center tracking-wider ' id='main-title'><span className='text-special'>Movie</span>{visibleTitle}</h1>
                     <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1.5 }}
                     >
-                        <p>Movie rut blues got you down?  MovieMiner is your cinematic compass!  Tell us a movie you enjoyed, and we'll use genre, actors, and other clues to suggest similar films. No personalization, just pure movie connections to spark your next viewing adventure. Discover hidden gems, revisit old favorites, and keep your film exploration exciting!</p>
+                        <p className='text-sm md:text-xl'>Movie rut blues got you down?  MovieMiner is your cinematic compass!  Tell us a movie you enjoyed, and we'll use genre, actors, and other clues to suggest similar films. No personalization, just pure movie connections to spark your next viewing adventure. Discover hidden gems, revisit old favorites, and keep your film exploration exciting!</p>
                     </motion.div>
                 </article>
                 <div className='btn-container'>

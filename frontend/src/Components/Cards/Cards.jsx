@@ -6,51 +6,6 @@ import { FaSearch } from "react-icons/fa";
 import { LuShieldClose } from "react-icons/lu";
 import { motion } from 'framer-motion'
 
-const objs = [
-    {
-        title: "Title 1",
-        overview: "Overview 1 is of great importance as we dive deeper into it.",
-        img: "https://media.contentapi.ea.com/content/dam/eacom/images/2020/09/ea-featured-image-ea-desktop-beta.jpg.adapt.crop191x100.1200w.jpg",
-        rating: "5.0",
-        id: 0,
-    },
-    {
-        title: "Title 2",
-        overview: "Overview 2 is of great importance as we dive deeper into it.",
-        img: "https://media.contentapi.ea.com/content/dam/eacom/images/2020/09/ea-featured-image-ea-desktop-beta.jpg.adapt.crop191x100.1200w.jpg",
-        rating: "4.0",
-        id: 1,
-    },
-    {
-        title: "Title 3",
-        overview: "Overview 3 is of great importance as we dive deeper into it.",
-        img: "https://media.contentapi.ea.com/content/dam/eacom/images/2020/09/ea-featured-image-ea-desktop-beta.jpg.adapt.crop191x100.1200w.jpg",
-        rating: "5.0",
-        id: 2,
-    },
-    {
-        title: "Title 4",
-        overview: "Overview 4 is of great importance as we dive deeper into it.",
-        img: "https://media.contentapi.ea.com/content/dam/eacom/images/2020/09/ea-featured-image-ea-desktop-beta.jpg.adapt.crop191x100.1200w.jpg",
-        rating: "2.0",
-        id: 3,
-    },
-    {
-        title: "Title 3",
-        overview: "Overview 3 is of great importance as we dive deeper into it.",
-        img: "https://media.contentapi.ea.com/content/dam/eacom/images/2020/09/ea-featured-image-ea-desktop-beta.jpg.adapt.crop191x100.1200w.jpg",
-        rating: "5.0",
-        id: 4,
-    },
-    {
-        title: "Title 4",
-        overview: "Overview 4 is of great importance as we dive deeper into it.",
-        img: "https://media.contentapi.ea.com/content/dam/eacom/images/2020/09/ea-featured-image-ea-desktop-beta.jpg.adapt.crop191x100.1200w.jpg",
-        rating: "2.0",
-        id: 5,
-    },
-]
-
 function Cards() {
 
     const navigate = useNavigate()
@@ -75,10 +30,9 @@ function Cards() {
                     })
                 })
                 const data = await req.json()
-
                 // The details i am fetching is non interable so we make use of Object Class.
                 let temp = []
-                Object.values(data).forEach((item, index) => {
+                Object.values(data.Data).forEach((item, index) => {
 
                     // Shortened Overview and Title  for Card View
                     const shortenOverview = item.Overview.substring(0, 120) + '...'
@@ -165,8 +119,8 @@ function Cards() {
                 </motion.div>
             }
             < div id='container' className={`min-w-screen ${openModal ? "opacity-25" : "opacity-100"} min-h-screen flex flex-col gap-4`} >
-                <section id='search-section' className='p-8 w-full flex justify-around'>
-                    <div id='search-button' className='w-1/2 relative'>
+                <section id='search-section' className='p-8 w-full flex justify-between md:justify-around'>
+                    <div id='search-button' className=' w-2/3 md:w-1/2 relative'>
                         <input
                             type="text"
                             id="search"

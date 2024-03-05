@@ -32,32 +32,72 @@
     font-size: 1.5rem;
 }
 
-.card-body{
+.card-body {
     font-size: 1.15rem;
 }
 
-@media (hover) {
-    .card-content {
-        transform: translateY(70%);
-        transition: transform 500ms ease;
-    }
+/* Base styles for .card-content and children */
+.card-content {
+    transform: translateY(70%);
+    transition: transform 500ms ease;
+}
 
-    .card-content>*:not(.card-title) {
-        opacity: 0;
-        transition: opacity 500ms linear;
-    }
+.card-content>*:not(.card-title) {
+    opacity: 0;
+    transition: opacity 500ms linear;
+}
 
-    .card:hover .card-content>*:not(.card-title),
-    .card:focus-within .card-content>*:not(.card-title) {
-        opacity: 1;
-        transition-delay: 700ms;
-    }
+/* Styles for hover and focus-within */
+.card:hover .card-content,
+.card:focus-within .card-content {
+    transform: translateY(18%);
+    transition-delay: 500ms;
+}
 
+.card:hover .card-content>*:not(.card-title),
+.card:focus-within .card-content>*:not(.card-title) {
+    opacity: 1;
+    transition-delay: 700ms;
+}
+
+@media (max-width: 700px){
     .card:hover .card-content,
     .card:focus-within .card-content {
-        transform: translateY(18%);
+        transform: translateY(-25%);
         transition-delay: 500ms;
     }
+}
+
+/* Adjustments for screens narrower than 700px */
+@media (max-width: 500px) {
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .card-body {
+        font-size: 0.9rem;
+    }
+
+    .card-content {
+        /* Adjust translateY percentage if needed */
+        transform: translateY(70%);
+    }
+
+    /* Styles for hover and focus-within */
+    .card:hover .card-content,
+    .card:focus-within .card-content {
+        transform: translateY(-18%);
+        transition-delay: 500ms;
+    }
+}
+
+/* If you need hover-specific styles that apply only to devices capable of hovering,
+   you can use the following media query. However, your initial CSS doesn't specify
+   different behaviors for hover-capable devices, so this might not be necessary.
+*/
+@media (hover: hover) {
+    /* Hover-specific styles here */
 }
 
 #know-more-btn {

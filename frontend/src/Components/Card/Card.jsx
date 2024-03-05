@@ -7,7 +7,7 @@ function Card(props) {
     const handleModal = props.handleModal;
 
     return (
-        <div className="card w-96 h-96 bg-cover" style={{ backgroundImage: `url('${img}')` }}>
+        <div className="card w-64 md:w-80 lg:w-96 h-72 md:h-96 bg-cover" style={{ backgroundImage: `url('${img}')` }}>
             <div className="card-content w-full">
                 <section className='card-title w-full flex justify-between items-center'>
                     <h2 className=''>{shortenedTitle}</h2>
