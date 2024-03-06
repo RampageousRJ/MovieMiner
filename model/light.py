@@ -1,3 +1,4 @@
+from thefuzz import fuzz,process
 import pandas as pd
 import pickle
 import json
@@ -10,13 +11,16 @@ fm = open('model/matrix.pkl','rb')
 similarity_matrix = pickle.load(fm)
 fm.close()
 
+def match_fuzzy(title):
+    return process.extract(title.lower(),df['Title_Lower'],scorer=fuzz.token_sort_ratio)[0][0]
+
 
 def fetch(movie):
     payload = {'Status':"Error",'Data':{}}
     try:
         index = df[df['Title_Lower']==movie.lower()].index[0]
     except:
-        return json.dumps(payload)
+        index = df[df['Title_Lower']==match_fuzzy(movie)].index[0]
     payload['Status']='OK'
     movies = sorted(list(enumerate(similarity_matrix[index])),reverse=True,key=lambda x:x[1])[1:7]
     similar_movies = []
