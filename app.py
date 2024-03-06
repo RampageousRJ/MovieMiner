@@ -3,7 +3,7 @@ from wtforms import StringField,SubmitField
 from flask_wtf import FlaskForm
 import requests
 from model.light import *
-from flask_cors import CORS,cross_origin
+from flask_cors import cross_origin
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='supersecretspecialkey'
