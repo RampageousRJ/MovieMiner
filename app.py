@@ -12,12 +12,12 @@ class MovieForm(FlaskForm):
     title = StringField("Enter movie: ")
     submit = SubmitField("Recommend")
 
-@app.route('/api',methods=['POST'])
+@app.route('/api', methods=['POST'])
 @cross_origin()
 def api():
     payload = request.get_json()
-    result = fetch(payload['title'])
-    return result
+    result = fetchSVD(payload['title'])
+    return result, 200, {'ContentType': 'application/json'}
 
 @app.route('/',methods=['GET','POST'])
 def home():
