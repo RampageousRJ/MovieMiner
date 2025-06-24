@@ -20,7 +20,7 @@ function Cards() {
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const req = await fetch('https://movieminer.onrender.com/api', {
+                const req = await fetch('http://141.148.216.254:5050/api', {
                     method: 'POST',
                     headers: {
                         'Content-Type': "application/json"
